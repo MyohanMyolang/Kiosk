@@ -7,13 +7,15 @@ import java.util.LinkedList
 class User(private var amount:Int) {
     val basket: LinkedList<Menu> = LinkedList<Menu>();
 
+    fun getAmount(): Int = amount;
+
     fun pay(pay: Int, target: Owner): Boolean{
         if(amount <= pay){
             println("금액이 부족 합니다.");
             return false;
         }
         amount -= pay;
-        target.recivePay(pay);
+        target.receivePay(pay);
         return true;
     }
 
