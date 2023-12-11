@@ -2,8 +2,13 @@ package kiosk.owner
 
 class Owner {
     private var amount: Int = 0;
+    private val pw:String = "password";
 
-    fun recivePay(money: Int){
+    fun checkPw(pw: String): Boolean{
+        return this.pw == pw;
+    }
+
+    fun receivePay(money: Int){
         amount+=money;
     }
 }
