@@ -1,5 +1,7 @@
 import kiosk.Kiosk
+import kiosk.notify.Notify
 
-fun main(args: Array<String>) {
+suspend fun main(args: Array<String>) {
     Kiosk().startService();
+    Notify.stopAsyncScope();
 }

@@ -1,6 +1,6 @@
 package kiosk.owner
 
-class Owner {
+object Owner {
     private var amount: Int = 0;
     private val pw:String = "password";
 
