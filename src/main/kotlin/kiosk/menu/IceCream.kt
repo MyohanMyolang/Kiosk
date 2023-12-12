@@ -11,5 +11,5 @@ class IceCream(name: String, cookTime: Int, price: Int, private val intro: Strin
         MenuCategory.valueOf(1);
     }
 
-    override fun toString(): String = "W ${decimalFormat.format(price/1000)} | ${intro}"
+    override fun toString(): String = "${name} | W ${decimalFormat.format(price/1000)} | ${intro}"
 }

@@ -22,12 +22,4 @@ class User(private var amount:Int) {
     fun addMenu(item: Menu){
         basket.add(item);
     }
-
-    fun getOrder(): LinkedList<Menu>{
-        val result: LinkedList<Menu> = basket.clone() as LinkedList<Menu>
-
-        basket.clear();
-
-        return result;
-    }
 }

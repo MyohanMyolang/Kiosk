@@ -1,14 +1,17 @@
 package kiosk.notify
 
+import kiosk.menu.Menu
 import kotlinx.coroutines.*
+import java.util.*
 
 object Notify {
-    var waitNum = 0;
+    private var waitNum = 0;
     private val asyncScope = CoroutineScope(Dispatchers.Default);
+    private var orderNum: Int = 0;
 
     private suspend fun printWaitNum(delay: Long){
         while(true){
-            println("\n대기 숫자 : $waitNum\n");
+            println("대기 숫자 : $waitNum");
             delay(delay)
         }
     }
@@ -21,5 +24,29 @@ object Notify {
 
     fun stopAsyncScope(){
         asyncScope.cancel();
+    }
+
+    private suspend fun cookMenu(time:Long, num:Int){
+        delay(time*1000)
+        println("주문번호 ${num} 완료");
+        waitNum--;
+    }
+
+
+    /**
+     * @return 주문 번호
+     */
+    fun addOrder(menuList: LinkedList<Menu>):Int {
+        var totalCookTime = 0;
+        menuList.forEach{
+            totalCookTime += it.cookTime;
+        }
+        waitNum++;
+        orderNum++;
+        asyncScope.launch {
+            cookMenu(totalCookTime.toLong(), orderNum);
+        }
+
+        return orderNum;
     }
 }
